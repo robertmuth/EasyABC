@@ -57,6 +57,7 @@ class FluidSynthPlayer(MidiPlayer):
         self.set_loop_midi_playback(self.loop_midi_playback)
 
     def Play(self):
+        print ("@@@PLAY")
         if self.is_playing:
             return
         if self.pending_soundfont:

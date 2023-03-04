@@ -25,12 +25,12 @@ program_name = 'EasyABC ' + program_version
 # gc.set_debug(gc.DEBUG_LEAK)
 #
 # # for finding segmentation fault or bus error (pip install faulthandler)
-# try:
-#     import faulthandler  # pip install faulthandler
-#     faulthandler.enable()
-# except ImportError:
-#     print('faulthandler not installed. Try: pip install faulthandler')
-#     pass
+try:
+    import faulthandler  # pip install faulthandler
+    faulthandler.enable()
+except ImportError:
+    print('faulthandler not installed. Try: pip install faulthandler')
+    pass
 
 import sys
 
@@ -4478,7 +4478,7 @@ class MainFrame(wx.Frame):
 
     def stop_playing(self):
         self.mc.Stop()
-        self.mc.Load('NONEXISTANT_FILE____.mid') # be sure the midi file is released 2014-10-25 [SS]
+        # self.mc.Load('NONEXISTANT_FILE____.mid') # be sure the midi file is released 2014-10-25 [SS]
         self.play_button.SetBitmap(self.play_bitmap)
         self.play_button.Refresh()
         self.progress_slider.SetValue(0)

@@ -47,8 +47,10 @@ else:
 i = 0
 while i < len(lib_locations):
     try:
+        print (f"@@@ TRYING SO {lib_locations[i]}")
         lib = lib_locations[i]
         F = CDLL(lib)
+        print (f"@@@@ {F}")
         break
     except:
         i += 1
@@ -58,7 +60,13 @@ if i == len(lib_locations):
 
 class Synth:            # interface for the FluidSynth synthesizer
     def __init__(self, gain=0.2, samplerate=44100.0, bsize=64, output_path=None):
+        print (f"@@@@ Synth Creation")
+        L = ["jack", "pulseaudio", None]
+        arr = (c_char_p * len(L))()
+        arr[:] = L
+        F.fluid_audio_driver_register(arr)
         self.settings = F.new_fluid_settings()
+        print (f"@@@@@ {self.settings:x}")
         self.setting_setnum('synth.gain', gain)
         # self.setting_setnum('synth.sample-rate', samplerate)
         # self.setting_setint('audio.period-size', bsize)
@@ -82,6 +90,7 @@ class Synth:            # interface for the FluidSynth synthesizer
         F.fluid_settings_setint(self.settings, c_char_p(b(name)), c_int(value))
 
     def setting_setnum(self, name, value):
+        print(f"@@@@ SETNUM {name} {value}")
         F.fluid_settings_setnum(self.settings, c_char_p(b(name)), c_double(value))
 
     def setting_getint(self, name):

@@ -27,7 +27,7 @@ class WxMediaPlayer(MidiPlayer):
         parent_window.Bind(wx.media.EVT_MEDIA_STOP, self.OnMediaStop)
 
     def Play(self):
-        # print('Play')
+        print('@@@@@@@@@@22 Play')
         if wx.Platform != "__WXMAC__":
             try: self.mc.Volume = 0.9
             except: pass
@@ -41,7 +41,7 @@ class WxMediaPlayer(MidiPlayer):
         # print('Stop')
         self.is_really_playing = False
         self.mc.Stop()
-        self.mc.Load('NONEXISTANT_FILE____.mid') # be sure the midi file is released 2014-10-25 [SS]
+        #self.mc.Load('NONEXISTANT_FILE____.mid') # be sure the midi file is released 2014-10-25 [SS]
 
     def Pause(self):
         self.mc.Pause()
